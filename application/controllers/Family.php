@@ -20,6 +20,11 @@ class Family extends CI_Controller
         var_dump($families);
     }
 
+    public function getFamily($id){
+        $family = $this->Family_model->family($id);
+        var_dump($family);
+    }
+
     public function postFamilies()
     {
         $postData = json_decode(trim(file_get_contents('php://input')), true);
