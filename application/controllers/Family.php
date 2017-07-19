@@ -15,9 +15,15 @@ class Family extends CI_Controller
 
     public function getFamilies()
     {
-        $query = $this->Family_model->families();
+        $families = $this->Family_model->families();
         echo '<pre>';
-        var_dump($query->result());
+        var_dump($families);
+    }
+
+    public function postFamilies()
+    {
+        $postData = json_decode(trim(file_get_contents('php://input')), true);
+        var_dump($postData);
     }
 
 }

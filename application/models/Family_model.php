@@ -8,7 +8,8 @@ class Family_model extends CI_Model {
     function families()
     {
         $this->db->from('family');
-        return $this->db->get();
+        $query = $this->db->get();
+        return $query->result();
     }
 
 }
