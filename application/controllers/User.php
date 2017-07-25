@@ -9,6 +9,8 @@ class User extends CI_Controller
 {
     function __construct()
     {
+        header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
         parent::__construct();
         $this->load->model('User_model');
     }
@@ -16,13 +18,12 @@ class User extends CI_Controller
     public function getUsers()
     {
         $families = $this->User_model->users();
-        echo '<pre>';
-        var_dump($families);
+        echo json_encode($families);
     }
 
     public function getUser($id){
         $family = $this->User_model->user($id);
-        var_dump($family);
+        echo json_encode($family);
     }
 
     public function postUser()

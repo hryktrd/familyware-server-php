@@ -59,3 +59,5 @@ $route['api/v1/family']['post'] = 'family/postFamilie';
 $route['api/v1/user']['get'] = 'user/getUsers';
 $route['api/v1/user/(:num)']['get'] = 'user/getUser/$1';
 $route['api/v1/user']['post'] = 'user/postUser';
+
+$route['api/v1/contact']['get'] = 'contact/getContacts';

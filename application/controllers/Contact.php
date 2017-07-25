@@ -1,24 +1,24 @@
 <?php
 
 /**
- * Class Family
+ * Class Contact
  *
- * @property Family_model $Family_model
+ * @property Contact_model $Contact_model
  */
-class Family extends CI_Controller
+class Contact extends CI_Controller
 {
     function __construct()
     {
         header('Access-Control-Allow-Origin: *');
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
         parent::__construct();
-        $this->load->model('Family_model');
+        $this->load->model('Contact_model');
     }
 
-    public function getFamilies()
+    public function getContacts()
     {
-        $families = $this->Family_model->families();
-        json_encode($families);
+        $contacts = $this->Contact_model->contacts();
+        json_encode($contacts);
     }
 
     public function getFamily($id){
