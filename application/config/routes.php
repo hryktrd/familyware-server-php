@@ -53,5 +53,9 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['family']['get'] = 'family/getFamilies';
-$route['family']['post'] = 'family/postFamilies';
+$route['api/v1/family']['get'] = 'family/getFamilies';
+$route['api/v1/family']['post'] = 'family/postFamilie';
+
+$route['api/v1/user']['get'] = 'user/getUsers';
+$route['api/v1/user/(:num)']['get'] = 'user/getUser/$1';
+$route['api/v1/user']['post'] = 'user/postUser';

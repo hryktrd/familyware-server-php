@@ -25,7 +25,7 @@ class Family extends CI_Controller
         var_dump($family);
     }
 
-    public function postFamilies()
+    public function postFamily()
     {
         $postData = json_decode(trim(file_get_contents('php://input')), true);
         var_dump($postData);
