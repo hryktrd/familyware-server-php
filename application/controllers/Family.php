@@ -15,21 +15,33 @@ class Family extends CI_Controller
         $this->load->model('Family_model');
     }
 
+    /**
+     * 全ファミリー一覧取得
+     */
     public function getFamilies()
     {
         $families = $this->Family_model->families();
         json_encode($families);
     }
 
+    /**
+     * 該当ユーザが所属しているファミリーを取得
+     * @param $id ユーザーID
+     */
     public function getFamily($id){
         $family = $this->Family_model->family($id);
         json_encode($family);
     }
 
+    /**
+     * ファミリー追加
+     */
     public function postFamily()
     {
         $postData = json_decode(trim(file_get_contents('php://input')), true);
-        var_dump($postData);
+        $this->Family_model->addFamily($postData);
     }
+
+
 
 }
