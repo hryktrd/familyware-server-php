@@ -61,3 +61,8 @@ $route['api/v1/user/(:num)']['get'] = 'user/getUser/$1';
 $route['api/v1/user']['post'] = 'user/postUser';
 
 $route['api/v1/contact']['get'] = 'contact/getContacts';
+
+$route['api/v1/task']['get'] = 'task/getTasks';
+$route['api/v1/task']['post'] = 'task/postTask';
+$route['api/v1/task']['put'] = 'task/putTask';
+$route['api/v1/task']['options'] = 'task/options';
