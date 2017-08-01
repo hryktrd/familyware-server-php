@@ -53,14 +53,17 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['api/v1/family']['get'] = 'family/getFamilies';
-$route['api/v1/family']['post'] = 'family/postFamilie';
+$route['api/v1/family/(:any)']['get'] = 'family/getFamilies/$1';
+$route['api/v1/family']['post'] = 'family/postFamily';
+
+$route['api/v1/family/(:any)/user']['get'] = 'user/getUserByFamilyId/$1';
 
 $route['api/v1/user']['get'] = 'user/getUsers';
 $route['api/v1/user/(:num)']['get'] = 'user/getUser/$1';
+$route['api/v1/user/(:any)']['get'] = 'user/getUserByUuid/$1';
 $route['api/v1/user']['post'] = 'user/postUser';
 
-$route['api/v1/contact']['get'] = 'contact/getContacts';
+//$route['api/v1/contact/(:any)']['get'] = 'family/getFamilyUsers/$1';
 
 $route['api/v1/task']['get'] = 'task/getTasks';
 $route['api/v1/task']['post'] = 'task/postTask';

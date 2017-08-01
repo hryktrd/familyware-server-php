@@ -16,22 +16,22 @@ class Family extends CI_Controller
     }
 
     /**
-     * 全ファミリー一覧取得
+     * 該当ユーザが所属しているファミリーを取得
+     * @param $uuid uuid
      */
-    public function getFamilies()
-    {
-        $families = $this->Family_model->families();
-        json_encode($families);
+    public function getFamilies($uuid){
+        $family = $this->Family_model->family($uuid);
+        echo json_encode($family);
     }
 
-    /**
-     * 該当ユーザが所属しているファミリーを取得
-     * @param $id ユーザーID
-     */
-    public function getFamily($id){
-        $family = $this->Family_model->family($id);
-        json_encode($family);
-    }
+//    /**
+//     * 該当ユーザが所属しているファミリーをユーザ付きで取得
+//     * @param $uuid uuid
+//     */
+//    public function getFamilyUsers($uuid){
+//        $family = $this->Family_model->family_user($uuid);
+//        echo json_encode($family);
+//    }
 
     /**
      * ファミリー追加

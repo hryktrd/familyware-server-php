@@ -18,27 +18,38 @@ class Family_model extends CI_Model {
 
     /**
      * 所属ファミリー一覧を取得
-     * @param $id
+     * @param $uuid
      * @return mixed 所属ファミリー一覧
      */
-    function family($id)
+    function family($uuid)
     {
-        $query = $this->db->get_where('family', array('user_id' => $id));
-        return $query->result();
+        $query1 = $this->db->get_where('user', array('uuid' => $uuid));
+        if(count($query1->result()) > 0) {
+            $query2 = $this->db->join('family_user', 'family_user.family_id=family.id', 'left')
+                ->group_by('id')
+                ->get_where('family', array('user_id' => $query1->result()[0]->id));
+            return $query2->result();
+        } else {
+            return [];
+        }
     }
 
     /**
      * 所属ファミリー一覧をユーザ情報付きで取得
-     * @param $id
+     * @param $uuid
      * @return mixed 所属ファミリー一覧
      */
-    function family_user($id)
+    function family_user($uuid)
     {
-        $query = $this->db->from('family')
-                            ->where('user_id', $id)
-                            ->join('family', 'family.user_id=user.id', 'left')
-                            ->get();
-        return $query->result();
+        $query1 = $this->db->get_where('user', array('uuid' => $uuid));
+        if(count($query1->result()) > 0) {
+            $query2 = $this->db->join('family_user', 'family_user.family_id=family.id', 'left')
+                ->join('user', 'user.id=family_user.user_id', 'left')
+                ->get_where('family', array('family_user.user_id', $query1->result()[0]->id));
+            return $query2->result();
+        } else {
+            return [];
+        }
     }
 
     /**

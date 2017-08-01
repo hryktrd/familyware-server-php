@@ -32,9 +32,9 @@ class User extends CI_Controller
      */
     public function getUserByName($name, $strict = FALSE)
     {
-        if(!$strict){
+        if (!$strict) {
             $this->db->like('name', $name, 'both');
-        }else {
+        } else {
             $this->db->where('name', $name);
         }
 
@@ -46,10 +46,27 @@ class User extends CI_Controller
      * ユーザー情報取得
      * @param $id ユーザID
      */
-    public function getUser($id){
-        $family = $this->User_model->user($id);
-        echo json_encode($family);
+    public function getUser($id)
+    {
+        $user = $this->User_model->user($id);
+        echo json_encode($user);
     }
+
+    /**
+     * ユーザー情報取得(UUID)
+     * @param $uuid ユーザID
+     */
+    public function getUserByUuid($uuid)
+    {
+        $users = $this->User_model->user_by_uuid($uuid);
+        echo json_encode($users);
+    }
+
+    public function getUserByFamilyId($id)
+    {
+        $users =  $this->User_model->userByFamilyId($id);
+        echo json_encode($users);
+}
 
     /**
      * ユーザー追加
@@ -57,7 +74,11 @@ class User extends CI_Controller
     public function postUser()
     {
         $userInfo = json_decode(trim(file_get_contents('php://input')), true);
-        $this->User_model->addUser($userInfo);
+        $insert_id = $this->User_model->addUser($userInfo);
+
+        echo json_encode(array('id' => $insert_id,
+            'name' => $userInfo['name'],
+            'uuid' => $userInfo['uuid']));
     }
 
 }
