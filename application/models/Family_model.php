@@ -60,10 +60,12 @@ class Family_model extends CI_Model {
     {
         $this->db->trans_start();
         $this->db->insert('family', array('name' => $familyInfo['name']));
+        $insert_id = $this->db->insert_id();
         $this->db->insert('family_user', array('family_id' => $this->db->insert_id(),
                                                 'user_id' => $familyInfo['user_id'],
                                                 'confirm' => 1));
         $this->db->trans_complete();
+        return $insert_id;
     }
 
     /**
