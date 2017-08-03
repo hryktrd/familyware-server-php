@@ -39,7 +39,7 @@ class User extends CI_Controller
         }
 
         $query = $this->db->get('user');
-        return $query->result();
+        echo json_encode($query->result());
     }
 
     /**
