@@ -55,14 +55,21 @@ class Family_model extends CI_Model {
     /**
      * ファミリー追加
      * @param $familyInfo name: ファミリー名 user_id: リクエストユーザID
+     * @return integer 成功の場合ファミリーID,失敗の場合NULLが返る
      */
     function addFamily($familyInfo)
     {
+        $query = $this->db->get_where('user', array('uuid' => $familyInfo['uuid']));
+        if (!$query->result()) {
+            return null;
+        }
+        $user_id = $query->result()[0]->id;
+
         $this->db->trans_start();
         $this->db->insert('family', array('name' => $familyInfo['name']));
         $insert_id = $this->db->insert_id();
         $this->db->insert('family_user', array('family_id' => $this->db->insert_id(),
-                                                'user_id' => $familyInfo['user_id'],
+                                                'user_id' => $user_id,
                                                 'confirm' => 1));
         $this->db->trans_complete();
         return $insert_id;
