@@ -65,7 +65,7 @@ class User extends CI_Controller
 
     public function getUserByFamilyId($id)
     {
-        $users =  $this->User_model->userByFamilyId($id);
+        $users = $this->User_model->userByFamilyId($id);
         echo json_encode($users);
     }
 
@@ -88,11 +88,14 @@ class User extends CI_Controller
      */
     public function postUserToFamily($familyId)
     {
-        error_log($familyId);
         $postData = json_decode(trim(file_get_contents('php://input')), true);
         $addData = array('user_id' => $postData['user_id'], 'family_id' => $familyId);
-        $this->User_model->addUserToFamily($addData);
-        $users =  $this->User_model->userByFamilyId($familyId);
+        if ($this->User_model->addUserToFamily($addData)) {
+            $users = $this->User_model->userByFamilyId($familyId);
+        } else {
+            $this->output->set_status_header(409);
+        }
+
         echo json_encode($users);
 
     }

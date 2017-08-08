@@ -39,10 +39,16 @@ class User_model extends CI_Model
     /**
      * ファミリーにユーザー追加
      * @param $data family_id: ファミリーID user_id: ユーザID
+     * @return boolean
      */
     function addUserToFamily($data)
     {
-        $this->db->insert('family_user', array('family_id' => $data['family_id'],
+        $query = $this->db->get_where('family_user', array('family_id' => $data['family_id'],
+                                                            'user_id' => $data['user_id']));
+        if($query->num_rows() > 0) {
+            return FALSE;
+        }
+        return $this->db->insert('family_user', array('family_id' => $data['family_id'],
             'user_id' => $data['user_id'],
             'confirm' => 0));
     }
