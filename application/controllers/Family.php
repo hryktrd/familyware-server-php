@@ -44,6 +44,4 @@ class Family extends CI_Controller
         echo json_encode($familyData);
     }
 
-
-
 }

@@ -76,17 +76,6 @@ class Family_model extends CI_Model {
     }
 
     /**
-     * ファミリーにユーザー追加
-     * @param $data family_id: ファミリーID user_id: ユーザID
-     */
-    function addUserToFamily($data)
-    {
-        $this->db->insert('family_user', array('family_id' => $data['family_id'],
-                                                'user_id' => $data['user_id'],
-                                                'confirm' => 0));
-    }
-
-    /**
      * ユーザー追加承認
      * @param $data family_id: ファミリーID user_id: ユーザID
      */

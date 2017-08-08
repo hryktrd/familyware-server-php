@@ -32,10 +32,11 @@ class User extends CI_Controller
      */
     public function getUserByName($name, $strict = FALSE)
     {
+        error_log(urldecode($name));
         if (!$strict) {
-            $this->db->like('name', $name, 'both');
+            $this->db->like('name', urldecode($name), 'both');
         } else {
-            $this->db->where('name', $name);
+            $this->db->where('name', urldecode($name));
         }
 
         $query = $this->db->get('user');
@@ -66,7 +67,7 @@ class User extends CI_Controller
     {
         $users =  $this->User_model->userByFamilyId($id);
         echo json_encode($users);
-}
+    }
 
     /**
      * ユーザー追加
@@ -79,6 +80,21 @@ class User extends CI_Controller
         echo json_encode(array('id' => $insert_id,
             'name' => $userInfo['name'],
             'uuid' => $userInfo['uuid']));
+    }
+
+    /**
+     * ファミリーにユーザー追加
+     * @param $familyId ファミリーID
+     */
+    public function postUserToFamily($familyId)
+    {
+        error_log($familyId);
+        $postData = json_decode(trim(file_get_contents('php://input')), true);
+        $addData = array('user_id' => $postData['user_id'], 'family_id' => $familyId);
+        $this->User_model->addUserToFamily($addData);
+        $users =  $this->User_model->userByFamilyId($familyId);
+        echo json_encode($users);
+
     }
 
 }
