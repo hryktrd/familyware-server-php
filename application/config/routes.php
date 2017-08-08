@@ -70,6 +70,7 @@ $route['api/v1/user_name/(:any)']['get'] = 'user/getUserByName/$1';
 //$route['api/v1/contact/(:any)']['get'] = 'family/getFamilyUsers/$1';
 
 $route['api/v1/task']['get'] = 'task/getTasks';
+$route['api/v1/task/(:any)']['get'] = 'task/getTasksByUuid/$1';
 $route['api/v1/task']['post'] = 'task/postTask';
 $route['api/v1/task']['put'] = 'task/putTask';
 $route['api/v1/task']['options'] = 'task/options';

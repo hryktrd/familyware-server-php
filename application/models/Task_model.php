@@ -17,6 +17,21 @@ class Task_model extends CI_Model {
     }
 
     /**
+     * UUIDからのタスク取得
+     * @return mixed
+     * @param @user_id ユーザID
+     */
+    function getTasksByUuid($uuid)
+    {
+        $query = $this->db
+            ->join('family_user', 'family_user.user_id=user.id', 'left')
+            ->join('family', 'family_user.family_id=family.id', 'left')
+            ->join('task', 'task.group_id=family_user.family_id', left)
+            ->get_where('user', array('uuid' => $uuid));
+        return $query->result();
+    }
+
+    /**
      * タスク追加
      * @param $taskInfo タスクモデル
      * @return mixed
