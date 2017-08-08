@@ -56,6 +56,8 @@ $route['translate_uri_dashes'] = FALSE;
 $route['api/v1/family/(:any)']['get'] = 'family/getFamilies/$1';
 $route['api/v1/family']['post'] = 'family/postFamily';
 $route['api/v1/family/(:num)']['post'] = 'user/postUserToFamily/$1';
+$route['api/v1/family/(:num)']['put'] = 'user/putUserToFamily/$1';
+$route['api/v1/family/(:num)']['options'] = 'user/options';
 
 $route['api/v1/family/(:any)/user']['get'] = 'user/getUserByFamilyId/$1';
 

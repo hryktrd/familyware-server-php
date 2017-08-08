@@ -100,4 +100,18 @@ class User extends CI_Controller
 
     }
 
+    /**
+     * ファミリーへのユーザー追加を承認
+     * @param $familyId ファミリーID
+     */
+    public function putUserToFamily($familyId)
+    {
+        $postData = json_decode(trim(file_get_contents('php://input')), true);
+        $addData = array('user_id' => $postData['user_id'], 'family_id' => $familyId);
+        $this->User_model->confirmAddUserToFamily($addData);
+    }
+
+    public function options() {
+    }
+
 }
