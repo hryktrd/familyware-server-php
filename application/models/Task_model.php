@@ -26,7 +26,7 @@ class Task_model extends CI_Model {
         $query = $this->db
             ->join('family_user', 'family_user.user_id=user.id', 'left')
             ->join('family', 'family_user.family_id=family.id', 'left')
-            ->join('task', 'task.group_id=family_user.family_id', 'left')
+            ->join('task', 'task.group_id=family_user.family_id', 'right')
             ->get_where('user', array('uuid' => $uuid));
         return $query->result();
     }

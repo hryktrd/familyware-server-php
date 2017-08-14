@@ -67,8 +67,16 @@ class User_model extends CI_Model
      * @return boolean
      */
     function confirmAddUserToFamily($data) {
-        error_log(var_dump($data), 3);
         $this->db->update('family_user', array('confirm' => 1), array('user_id' => $data['user_id'], 'family_id' => $data['family_id']));
+    }
+
+    /**
+     * ファミリーから脱退
+     * @param $data family_id: ファミリーID user_id: ユーザID
+     * @return boolean
+     */
+    function leaveUserFromFamily($data) {
+        $this->db->delete('family_user', array('user_id' => $data['user_id'], 'family_id' => $data['family_id']));
     }
 
 }

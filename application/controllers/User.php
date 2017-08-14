@@ -111,6 +111,16 @@ class User extends CI_Controller
         $this->User_model->confirmAddUserToFamily($addData);
     }
 
+    /**
+     * ファミリーから脱退
+     * @param $familyId ファミリーID
+     */
+    public function leaveUserFromFamily($familyId, $userId)
+    {
+        $leaveData = array('user_id' => $userId, 'family_id' => $familyId);
+        $this->User_model->leaveUserFromFamily($leaveData);
+    }
+
     public function options() {
     }
 

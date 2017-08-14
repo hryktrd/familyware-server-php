@@ -40,7 +40,7 @@ class Family extends CI_Controller
     {
         $postData = json_decode(trim(file_get_contents('php://input')), true);
         $family_id = $this->Family_model->addFamily($postData);
-        $familyData = array('id' => $family_id, 'name' => $postData['name']);
+        $familyData = array('id' => (int)$family_id, 'name' => $postData['name'], 'confirm' => 1);
         echo json_encode($familyData);
     }
 
