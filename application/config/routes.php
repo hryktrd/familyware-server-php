@@ -75,4 +75,6 @@ $route['api/v1/task']['get'] = 'task/getTasks';
 $route['api/v1/task/(:any)']['get'] = 'task/getTasksByUuid/$1';
 $route['api/v1/task']['post'] = 'task/postTask';
 $route['api/v1/task']['put'] = 'task/putTask';
+$route['api/v1/task/(:num)']['delete'] = 'task/deleteTask/$1';
 $route['api/v1/task']['options'] = 'task/options';
+$route['api/v1/task/(:num)']['options'] = 'task/options';

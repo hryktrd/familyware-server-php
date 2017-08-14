@@ -41,6 +41,12 @@ class Task extends CI_Controller
         $this->getTasks();
     }
 
+    function deleteTask($id)
+    {
+        $this->Task_model->deleteTask($id);
+        $this->getTasks();
+    }
+
     function options() {
     }
 

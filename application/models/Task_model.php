@@ -51,4 +51,13 @@ class Task_model extends CI_Model {
         $this->db->update('task', $taskInfo, array('id' => $taskInfo['id']));
     }
 
+    /**
+     * タスク削除
+     * @param $id タスクID
+     * @return mixed
+     */
+    function deleteTask($id)
+    {
+        $this->db->delete('task', array('id' => $id));
+    }
 }
