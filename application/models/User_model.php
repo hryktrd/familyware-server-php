@@ -28,6 +28,10 @@ class User_model extends CI_Model
 
     function addUser($userInfo)
     {
+        $query1 = $this->db->get_where('user', array('name' => $userInfo['name']));
+        if($query1->num_rows() > 0) {
+            return FALSE;
+        }
         $this->db->trans_start();
         $this->db->insert('user', $userInfo);
         $insert_id = $this->db->insert_id();

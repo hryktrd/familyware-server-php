@@ -66,11 +66,15 @@ class User extends CI_Controller
     public function postUser()
     {
         $userInfo = json_decode(trim(file_get_contents('php://input')), true);
-        $insert_id = $this->User_model->addUser($userInfo);
+        if($insert_id = $this->User_model->addUser($userInfo)){
+            echo json_encode(array('id' => $insert_id,
+                'name' => $userInfo['name'],
+                'uuid' => $userInfo['uuid']));
+        } else {
+            $this->output->set_status_header(409);
+        }
 
-        echo json_encode(array('id' => $insert_id,
-            'name' => $userInfo['name'],
-            'uuid' => $userInfo['uuid']));
+
     }
 
     /**
