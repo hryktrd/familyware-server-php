@@ -32,12 +32,21 @@ class Task_model extends CI_Model {
     }
 
     /**
+     * ファミリーIDからのタスク取得
+     * @param $familyId
+     */
+    function tasksByFamilyId($familyId)
+    {
+        $query = $this->db->get_where('task', array('task.group_id' => $familyId));
+        return $query->result();
+    }
+
+    /**
      * タスク追加
      * @param $taskInfo タスクモデル
      * @return mixed
      */
     function addTask($taskInfo){
-        error_log(print_r($taskInfo, true));
         $this->db->insert('task', $taskInfo);
         return $this->db->insert_id();
     }

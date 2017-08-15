@@ -27,6 +27,11 @@ class Task extends CI_Controller
         echo json_encode($this->Task_model->tasksByUuid($this->uuid));
     }
 
+    function getTasksByFamilyId($id)
+    {
+        echo json_encode($this->Task_model->tasksByFamilyId($id));
+    }
+
     function postTask()
     {
         $taskInfo = json_decode(trim(file_get_contents('php://input')), true);
