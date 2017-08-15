@@ -25,7 +25,6 @@ class User extends CI_Controller
      */
     public function getUserByName($name, $strict = FALSE)
     {
-        error_log(urldecode($name));
         if (!$strict) {
             $this->db->like('name', urldecode($name), 'both');
         } else {
