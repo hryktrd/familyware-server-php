@@ -65,19 +65,19 @@ $route['api/v1/family/(:num)/(:num)']['options'] = 'user/options';
 $route['api/v1/family/(:any)/user']['get'] = 'user/getUserByFamilyId/$1';
 $route['api/v1/family/(:any)/user']['options'] = 'user/options';
 
-$route['api/v1/user']['get'] = 'user/getUsers';
 $route['api/v1/user/(:num)']['get'] = 'user/getUser/$1';
-$route['api/v1/user/']['get'] = 'user/getUserByUuid/';
+$route['api/v1/user']['get'] = 'user/getUserByUuid';
 $route['api/v1/user']['post'] = 'user/postUser';
 $route['api/v1/user_name/(:any)']['get'] = 'user/getUserByName/$1';
 $route['api/v1/user']['options'] = 'user/options';
 
 //$route['api/v1/contact/(:any)']['get'] = 'family/getFamilyUsers/$1';
 
-$route['api/v1/task']['get'] = 'task/getTasks';
-$route['api/v1/task/(:any)']['get'] = 'task/getTasksByUuid';
+$route['api/v1/task']['get'] = 'task/getTasksByUuid';
+$route['api/v1/task/family/(:num)']['get'] = 'task/getTasksByFamilyId/$1';
 $route['api/v1/task']['post'] = 'task/postTask';
 $route['api/v1/task']['put'] = 'task/putTask';
 $route['api/v1/task/(:num)']['delete'] = 'task/deleteTask/$1';
+$route['api/v1/task/family/(:num)']['options'] = 'task/options';
 $route['api/v1/task']['options'] = 'task/options';
 $route['api/v1/task/(:any)']['options'] = 'task/options';

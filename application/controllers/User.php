@@ -18,15 +18,6 @@ class User extends CI_Controller
     }
 
     /**
-     * 全ユーザ取得
-     */
-    public function getUsers()
-    {
-        $families = $this->User_model->users();
-        echo json_encode($families);
-    }
-
-    /**
      * ユーザ名でユーザ検索
      * @param $name ユーザ名
      * @param bool $strict falseでLIKE使用、trueだと完全一致のみ
