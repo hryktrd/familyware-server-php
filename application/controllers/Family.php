@@ -13,14 +13,14 @@ class Family extends CI_Controller
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
         parent::__construct();
         $this->load->model('Family_model');
+        $this->uuid = $this->input->get_request_header('Device-Uuid');
     }
 
     /**
      * 該当ユーザが所属しているファミリーを取得
-     * @param $uuid uuid
      */
-    public function getFamilies($uuid){
-        $family = $this->Family_model->family($uuid);
+    public function getFamilies(){
+        $family = $this->Family_model->family($this->uuid);
         echo json_encode($family);
     }
 

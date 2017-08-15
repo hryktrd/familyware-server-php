@@ -10,9 +10,11 @@ class User extends CI_Controller
     function __construct()
     {
         header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Device-Uuid");
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
         parent::__construct();
         $this->load->model('User_model');
+        $this->uuid= $this->input->get_request_header('Device-Uuid');
     }
 
     /**
@@ -55,11 +57,10 @@ class User extends CI_Controller
 
     /**
      * ユーザー情報取得(UUID)
-     * @param $uuid ユーザID
      */
-    public function getUserByUuid($uuid)
+    public function getUserByUuid()
     {
-        $users = $this->User_model->user_by_uuid($uuid);
+        $users = $this->User_model->user_by_uuid($this->uuid);
         echo json_encode($users);
     }
 

@@ -10,10 +10,11 @@ class Task extends CI_Controller
     function __construct()
     {
         header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Device-Uuid");
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
         parent::__construct();
         $this->load->model('Task_model');
+        $this->uuid= $this->input->get_request_header('Device-Uuid');
     }
 
     function getTasks()
@@ -21,10 +22,9 @@ class Task extends CI_Controller
         echo json_encode($this->Task_model->tasks());
     }
 
-    function getTasksByUuid($uuid)
+    function getTasksByUuid()
     {
-        error_log($uuid);
-        echo json_encode($this->Task_model->tasksByUuid($uuid));
+        echo json_encode($this->Task_model->tasksByUuid($this->uuid));
     }
 
     function postTask()

@@ -53,28 +53,31 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['api/v1/family/(:any)']['get'] = 'family/getFamilies/$1';
+$route['api/v1/family']['get'] = 'family/getFamilies';
 $route['api/v1/family']['post'] = 'family/postFamily';
 $route['api/v1/family/(:num)']['post'] = 'user/postUserToFamily/$1';
 $route['api/v1/family/(:num)']['put'] = 'user/putUserToFamily/$1';
 $route['api/v1/family/(:num)/(:num)']['delete'] = 'user/leaveUserFromFamily/$1/$2';
+$route['api/v1/family']['options'] = 'user/options';
 $route['api/v1/family/(:num)']['options'] = 'user/options';
 $route['api/v1/family/(:num)/(:num)']['options'] = 'user/options';
 
 $route['api/v1/family/(:any)/user']['get'] = 'user/getUserByFamilyId/$1';
+$route['api/v1/family/(:any)/user']['options'] = 'user/options';
 
 $route['api/v1/user']['get'] = 'user/getUsers';
 $route['api/v1/user/(:num)']['get'] = 'user/getUser/$1';
-$route['api/v1/user/(:any)']['get'] = 'user/getUserByUuid/$1';
+$route['api/v1/user/']['get'] = 'user/getUserByUuid/';
 $route['api/v1/user']['post'] = 'user/postUser';
 $route['api/v1/user_name/(:any)']['get'] = 'user/getUserByName/$1';
+$route['api/v1/user']['options'] = 'user/options';
 
 //$route['api/v1/contact/(:any)']['get'] = 'family/getFamilyUsers/$1';
 
 $route['api/v1/task']['get'] = 'task/getTasks';
-$route['api/v1/task/(:any)']['get'] = 'task/getTasksByUuid/$1';
+$route['api/v1/task/(:any)']['get'] = 'task/getTasksByUuid';
 $route['api/v1/task']['post'] = 'task/postTask';
 $route['api/v1/task']['put'] = 'task/putTask';
 $route['api/v1/task/(:num)']['delete'] = 'task/deleteTask/$1';
 $route['api/v1/task']['options'] = 'task/options';
-$route['api/v1/task/(:num)']['options'] = 'task/options';
+$route['api/v1/task/(:any)']['options'] = 'task/options';
