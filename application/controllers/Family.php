@@ -39,6 +39,7 @@ class Family extends CI_Controller
     public function postFamily()
     {
         $postData = json_decode(trim(file_get_contents('php://input')), true);
+        $postData['uuid'] = $this->uuid;
         $family_id = $this->Family_model->addFamily($postData);
         $familyData = array('id' => (int)$family_id, 'name' => $postData['name'], 'confirm' => 1);
         echo json_encode($familyData);
