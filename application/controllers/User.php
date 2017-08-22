@@ -14,7 +14,14 @@ class User extends CI_Controller
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
         parent::__construct();
         $this->load->model('User_model');
-        $this->uuid= $this->input->get_request_header('Device-Uuid');
+        $this->uuid = $this->input->get_request_header('Device-Uuid');
+        error_log($this->uuid);
+
+        if(!$this->uuid && $_SERVER['REQUEST_METHOD'] !== 'OPTIONS') {
+            $this->output->set_status_header(403);
+            error_log("no header access");
+            die();
+        }
     }
 
     /**

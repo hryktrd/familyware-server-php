@@ -14,6 +14,11 @@ class Family extends CI_Controller
         parent::__construct();
         $this->load->model('Family_model');
         $this->uuid = $this->input->get_request_header('Device-Uuid');
+        if(!$this->uuid && $_SERVER['REQUEST_METHOD'] !== 'OPTIONS') {
+            $this->output->set_status_header(403);
+            error_log("no header access");
+            die();
+        }
     }
 
     /**
