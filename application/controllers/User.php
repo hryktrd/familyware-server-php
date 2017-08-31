@@ -85,6 +85,27 @@ class User extends CI_Controller
     }
 
     /**
+     * ユーザー名変更
+     */
+    public function putUser($id)
+    {
+        $userInfo = json_decode(trim(file_get_contents('php://input')), true);
+        if($userInfo['uuid'] !== $this->uuid) {
+            $this->output->set_status_header(403);
+            die();
+        }
+        if($this->User_model->updateUser($id, $userInfo)){
+            echo json_encode(array('id' => $id,
+                'name' => $userInfo['name'],
+                'uuid' => $userInfo['uuid']));
+        } else {
+            $this->output->set_status_header(409);
+        }
+
+
+    }
+
+    /**
      * ファミリーにユーザー追加
      * @param $familyId ファミリーID
      */

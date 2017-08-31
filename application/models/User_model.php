@@ -41,6 +41,23 @@ class User_model extends CI_Model
     }
 
     /**
+     * ユーザー名変更
+     * @param $id
+     * @param $userInfo
+     * @return bool
+     */
+    function updateUser($id, $userInfo)
+    {
+        $query1 = $this->db->get_where('user', array('name' => $userInfo['name']));
+        if($query1->num_rows() > 0) {
+            return FALSE;
+        }
+        $this->db->update('user', $userInfo, array('id' => $id));
+//        $query = $this->db->get_where('user', array('id' => $id));
+        return TRUE;
+    }
+
+    /**
      * ファミリーにユーザー追加
      * @param $data family_id: ファミリーID user_id: ユーザID
      * @return boolean
